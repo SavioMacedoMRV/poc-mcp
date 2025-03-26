@@ -1,0 +1,1 @@
+export { EstadosPill } from './estadosPill'

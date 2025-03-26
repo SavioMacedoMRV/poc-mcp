@@ -10,7 +10,7 @@ export const Content = styled.div`
   flex-direction: column;
   gap: ${margens.xlarge}px;
   padding: ${margens.medium}px;
-  max-width: 1350px;
+  max-width: 1140px;
   margin: 0 auto;
   width: 100%;
 `

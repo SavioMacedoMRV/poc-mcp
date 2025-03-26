@@ -7,10 +7,20 @@ import {
   InputIconePesquisa,
   TextAreaStyled,
   IconeInput,
+  InputLabel,
+  InputWrapper,
+  OptionsContainer,
+  OptionItem,
+  OptionText,
+  Divider,
+  LoadingContainer,
+  RelativeContainer
 } from './input.styles'
 import PesquisarSVG from 'icons/iPesquisar.svg'
 import FecharSVG from 'icons/iFechar.svg'
 import {Icone} from 'components/icone'
+import {Texto} from 'components/texto'
+import {cores} from 'resources/cores'
 
 export const Input = ({
   tipo,
@@ -34,6 +44,12 @@ export const Input = ({
   aoFocar,
   aoSubmeter,
   aoDigitar,
+  label,
+  required = false,
+  // Propriedades para dropdown
+  opcoesPesquisa,
+  aoSelecionarOpcao,
+  carregandoOpcoes = false,
   ...props
 }: Readonly<InputProps>) => {
   const tipoPesquisa = tipo === 'pesquisa'
@@ -43,10 +59,15 @@ export const Input = ({
   const [pesquisaAtiva, setPesquisaAtiva] = useState(
     Boolean((tipoTextArea && valor) || (tipoPesquisa && valor)),
   )
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const [value, setValue] = useState(valor?.toString() ?? '')
   const [alturaInicial, setAlturaInicial] = useState<number | undefined>()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const [mostrarTodasOpcoes, setMostrarTodasOpcoes] = useState(false)
+
+  const displayLabel = required ? `${label} (obrigatório)` : label
 
   const ajustarAltura = useCallback(() => {
     if (textAreaRef.current) {
@@ -94,6 +115,36 @@ export const Input = ({
     ajustarAltura()
   }, [ajustarAltura, value])
 
+  // Efeito para fechar o dropdown quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Filtrar opções baseado no texto digitado
+  const getFilteredOptions = () => {
+    if (!opcoesPesquisa || carregandoOpcoes) return []
+    
+    // Se mostrarTodasOpcoes for verdadeiro, retorna todas as opções sem filtrar
+    if (mostrarTodasOpcoes) {
+      return opcoesPesquisa
+    }
+    
+    if (value) {
+      return opcoesPesquisa.filter(opcao => 
+        opcao.toLowerCase().includes(value.toLowerCase())
+      )
+    }
+    
+    return opcoesPesquisa
+  }
+
   const formatarNumero = (valor: string): string => {
     return valor.replace('.', ',')
   }
@@ -138,18 +189,26 @@ export const Input = ({
     if (aoDigitar) {
       aoDigitar(valorInput)
     }
+
+    // Abrir dropdown ao digitar se for tipo pesquisa e tiver opções
+    if (tipoPesquisa && opcoesPesquisa) {
+      setIsDropdownOpen(true)
+    }
   }
 
   const handleAoDesfocar = () => {
     if (aoDesfocar) {
       aoDesfocar(formatarValor(tipoNumero, value))
     }
+    setIsDropdownOpen(false)
   }
 
   const handleAoFocar = () => {
     if (tipoPesquisa && !value) {
       setPesquisaAtiva(false)
     }
+    // Redefine o mostrarTodasOpcoes quando o input recebe foco
+    setMostrarTodasOpcoes(false)
     if (aoFocar) {
       aoFocar()
     }
@@ -182,63 +241,121 @@ export const Input = ({
     setPesquisaAtiva(false)
   }
 
+  const handleSelecionarOpcao = (opcao: string) => {
+    setValue(opcao)
+    setPesquisaAtiva(true) // Ativa o estado de pesquisa para mostrar o ícone X
+    setIsDropdownOpen(false)
+    setMostrarTodasOpcoes(false) // Reseta o estado de mostrar todas as opções
+    if (aoSelecionarOpcao) {
+      aoSelecionarOpcao(opcao)
+    }
+  }
+
+  // Função para lidar com o clique no ícone de lupa
+  const handleMostrarTodasOpcoes = () => {
+    if (tipoPesquisa && opcoesPesquisa) {
+      setMostrarTodasOpcoes(true)
+      setIsDropdownOpen(true)
+    }
+  }
+
   return (
     <StyleSheetManager shouldForwardProp={prop => !!prop}>
-      <InputContainer
-        data-testid={testId}
-        onBlur={handleAoDesfocar}
-        onFocus={handleAoFocar}
-        $corBorda={corBorda ?? cor}
-        $corBordaFocada={corBordaFocada}
-        $semBorda={semBorda}
-        $desabilitado={desabilitado}
-        $iconeEsquerda={iconeEsquerda}
-        $tipoTextArea={tipoTextArea}
-        {...props}
-      >
-        {tipoTextArea ? (
-          <TextAreaStyled
-            data-testid={'textarea-' + testId}
-            rows={numeroLinhas}
-            ref={textAreaRef}
-            autoFocus={tipoTextArea}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleSubmeter}
+      <RelativeContainer ref={containerRef} data-testid={testId}>
+        <InputWrapper>
+          {label && <InputLabel>{displayLabel}</InputLabel>}
+          <InputContainer
             onBlur={handleAoDesfocar}
-            cor={textoProps?.cor ?? cor}
-            placeholder={placeholder}
-            $corTextoDesativado={corTextoDesativado}
-            $numeroMaxLinhas={numeroMaxLinhas}
-            disabled={desabilitado}
-            {...textoProps}
-          />
-        ) : (
-          <InputStyled
-            data-testid={'input-' + testId}
-            autoFocus={props.autoFocus}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleSubmeter}
-            onBlur={handleAoDesfocar}
-            cor={textoProps?.cor ?? cor}
-            placeholder={placeholder}
-            $corTextoDesativado={corTextoDesativado}
-            disabled={desabilitado}
-            {...textoProps}
-          />
-        )}
-        {(tipoPesquisa || tipoTextArea) && !desabilitaIcone && (
-          <IconeBotao
-            testId={testId}
-            icone={icone}
-            pesquisaAtiva={pesquisaAtiva}
-            itemSelecionado={itemSelecionado}
-            handleLimparPesquisa={handleLimparPesquisa}
-            handleSubmeter={handleSubmeter}
-          />
-        )}
-      </InputContainer>
+            onFocus={handleAoFocar}
+            $corBorda={corBorda}
+            $corBordaFocada={corBordaFocada}
+            $semBorda={semBorda}
+            $desabilitado={desabilitado}
+            $iconeEsquerda={iconeEsquerda}
+            $tipoTextArea={tipoTextArea}
+            {...props}
+          >
+            {tipoTextArea ? (
+              <TextAreaStyled
+                data-testid={'textarea-' + testId}
+                rows={numeroLinhas}
+                ref={textAreaRef}
+                autoFocus={tipoTextArea}
+                value={value}
+                onChange={handleChange}
+                onKeyDown={handleSubmeter}
+                onBlur={handleAoDesfocar}
+                cor={textoProps?.cor ?? cor}
+                placeholder={placeholder}
+                $corTextoDesativado={corTextoDesativado}
+                $numeroMaxLinhas={numeroMaxLinhas}
+                disabled={desabilitado}
+                {...textoProps}
+              />
+            ) : (
+              <InputStyled
+                data-testid={'input-' + testId}
+                autoFocus={props.autoFocus}
+                value={value}
+                onChange={handleChange}
+                onKeyDown={handleSubmeter}
+                onBlur={handleAoDesfocar}
+                cor={textoProps?.cor ?? cor}
+                placeholder={placeholder}
+                $corTextoDesativado={corTextoDesativado}
+                disabled={desabilitado}
+                {...textoProps}
+              />
+            )}
+            {(tipoPesquisa || tipoTextArea) && !desabilitaIcone && (
+              <IconeBotao
+                testId={testId}
+                icone={icone}
+                pesquisaAtiva={pesquisaAtiva}
+                itemSelecionado={itemSelecionado}
+                handleLimparPesquisa={handleLimparPesquisa}
+                handleSubmeter={handleSubmeter}
+                handleMostrarTodasOpcoes={handleMostrarTodasOpcoes}
+              />
+            )}
+          </InputContainer>
+          
+          {/* Dropdown de pesquisa */}
+          {tipoPesquisa && opcoesPesquisa && (
+            <>
+              {carregandoOpcoes && isDropdownOpen ? (
+                <LoadingContainer>
+                  <Texto tamanho={12} estilo="regular" cor={cores.neutralDark}>
+                    Carregando...
+                  </Texto>
+                </LoadingContainer>
+              ) : (
+                <OptionsContainer $isOpen={isDropdownOpen}>
+                  {getFilteredOptions().length > 0 ? (
+                    getFilteredOptions().map((opcao, index) => (
+                      <React.Fragment key={opcao}>
+                        <OptionItem
+                          onClick={() => handleSelecionarOpcao(opcao)}
+                          data-testid={`option-item-${index}`}
+                        >
+                          <OptionText>{opcao}</OptionText>
+                        </OptionItem>
+                        {index < getFilteredOptions().length - 1 && <Divider />}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    value && isDropdownOpen && (
+                      <Texto tamanho={12} estilo="regular" cor={cores.neutralDark}>
+                        Nenhuma opção encontrada
+                      </Texto>
+                    )
+                  )}
+                </OptionsContainer>
+              )}
+            </>
+          )}
+        </InputWrapper>
+      </RelativeContainer>
     </StyleSheetManager>
   )
 }
@@ -250,6 +367,7 @@ const IconeBotao = ({
   itemSelecionado,
   handleLimparPesquisa,
   handleSubmeter,
+  handleMostrarTodasOpcoes,
 }: {
   testId: string
   icone?: IconeInput
@@ -257,6 +375,7 @@ const IconeBotao = ({
   itemSelecionado?: boolean
   handleLimparPesquisa: () => void
   handleSubmeter: (key: any) => void
+  handleMostrarTodasOpcoes: () => void
 }) => {
   const styleIcone = {
     icone: icone?.icone,
@@ -295,7 +414,7 @@ const IconeBotao = ({
       cor={styleIcone.cor}
       largura={styleIcone.largura}
       altura={styleIcone.altura}
-      aoClicar={handleSubmeter}
+      aoClicar={handleMostrarTodasOpcoes}
     />
   )
 }

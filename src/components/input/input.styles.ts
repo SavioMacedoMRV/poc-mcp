@@ -36,6 +36,12 @@ export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   aoDigitar?: (valor?: string | number) => void
   aoFocar?: () => void
   'data-testid'?: string
+  label?: string
+  required?: boolean
+  // Propriedades para dropdown de pesquisa
+  opcoesPesquisa?: string[]
+  aoSelecionarOpcao?: (opcao: string) => void
+  carregandoOpcoes?: boolean
 }
 interface StyledProps {
   $semBorda?: boolean
@@ -69,7 +75,7 @@ export const InputContainer = styled.div<InputProps & StyledProps>`
   width: ${({largura}) => (largura ? `${largura}px` : 'auto')};
   background: ${({$desabilitado}) =>
     $desabilitado ? cores.background01 : cores.neutralXXLight};
-  border-radius: ${margens.xsmall}px;
+  border-radius: 8px;
   border: ${({$semBorda, $corBorda, $desabilitado}) => {
     if ($semBorda) {
       return 'none'
@@ -78,7 +84,7 @@ export const InputContainer = styled.div<InputProps & StyledProps>`
       return `2px solid ${cores.background01}`
     }
 
-    return `2px solid ${$corBorda ?? cores.neutralDark}`
+    return `2px solid ${$corBorda ?? cores.background01}`
   }};
 
   &:focus-within {
@@ -89,13 +95,24 @@ export const InputContainer = styled.div<InputProps & StyledProps>`
       if ($corBordaFocada) {
         return `2px solid ${$corBordaFocada}`
       }
-      return `2px solid ${$corBorda ?? cores.neutralDark}`
+      return `2px solid ${$corBorda ?? cores.background01}`
     }};
-    box-shadow: ${({$semBorda}) =>
-      $semBorda
-        ? 'none'
-        : `0px 2px 8px 0px ${hexToRgba(cores.neutralXDark, 0.3)}`};
+    box-shadow: none;
   }
+`
+
+export const InputLabel = styled.label`
+  font-family: ${fontes.semibold};
+  font-size: 12px;
+  line-height: 1.67em;
+  color: ${cores.neutralXDark};
+  margin-bottom: 4px;
+`
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `
 
 export const InputStyled = styled.input<InputProps & TextoProps & StyledProps>`
@@ -194,4 +211,66 @@ export const InputIconePesquisa = styled(BotaoIcone).attrs({
   semMargem: true,
 })`
   align-items: baseline;
+`
+
+// Estilos para o dropdown de pesquisa
+export const OptionsContainer = styled.div<{ $isOpen: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: ${cores.neutralXXLight};
+  border-radius: 16px;
+  margin-top: 4px;
+  z-index: 10;
+  box-shadow: 0px 2px 8px 0px rgba(32, 38, 36, 0.16);
+  padding: 16px;
+  display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 8px;
+`
+
+export const OptionItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.7;
+  }
+`
+
+export const OptionText = styled.span`
+  font-family: ${fontes.semibold};
+  font-size: 12px;
+  line-height: 1.67;
+  color: ${cores.neutralXXDark};
+`
+
+export const Divider = styled.div`
+  height: 2px;
+  background-color: ${cores.background01};
+  width: 100%;
+`
+
+export const LoadingContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: ${cores.neutralXXLight};
+  border-radius: 16px;
+  margin-top: 4px;
+  z-index: 10;
+  box-shadow: 0px 2px 8px 0px rgba(32, 38, 36, 0.16);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+`
+
+export const RelativeContainer = styled.div`
+  position: relative;
+  width: 100%;
 `
