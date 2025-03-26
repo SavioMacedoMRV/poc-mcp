@@ -2,6 +2,7 @@ import React, {ReactElement, useCallback, useState} from 'react'
 import * as S from './cabecalho.styles'
 import {Evento} from 'types/enums'
 import {Empreendimento} from 'types/interfaces'
+import {BotaoMenu} from 'components/botaoMenu'
 import {BotaoIcone} from 'components/botaoIcone'
 import {RegistrarEvento} from 'infrastructure/logs'
 import {useNavigate} from 'react-router-dom'
@@ -85,6 +86,7 @@ export const Cabecalho = ({
           <S.TextoVoltar>{projetoSelecionado.obra}</S.TextoVoltar>
         )}
       </S.HeaderLeft>
+
       <S.HeaderCenter>
         {pesquisa && (
           <S.InputPesquisar
@@ -94,8 +96,17 @@ export const Cabecalho = ({
           />
         )}
         <S.BotaoHubs
-          data-testid={'navegacao-hubs-cabecalho'}
-          onSelect={() => {}}
+          data-testid={'filtro-pep-superior-cabecalho'}
+          botao={{
+            texto: 'Hubs',
+            textoProps: {
+              tamanho: 12,
+              cor: '#434645',
+              estilo: 'regular'
+            }
+          }}
+          titulo={'Navegação'}
+          componenteOpcoes={<MenuNavegacao />}
         />
         {filtroAtividade && (
           <S.BotaoFiltro
@@ -112,6 +123,7 @@ export const Cabecalho = ({
           />
         )}
       </S.HeaderCenter>
+
       <S.HeaderRight>
         {cabecalhoDireita ??
           (botaoSair && (

@@ -7,7 +7,6 @@ import {
   createBrowserRouter,
   createMemoryRouter,
   defer,
-  Navigate,
 } from 'react-router-dom'
 import {HomePage} from 'pages/home'
 import {rotas} from 'resources/rotas'
@@ -55,10 +54,6 @@ export const WebRoutes = ({
       children: [
         {
           index: true,
-          element: <Navigate to={rotas.HubFormas} replace />,
-        },
-        {
-          path: 'home',
           Component: HomePage,
           loader: homePageLoader,
         },

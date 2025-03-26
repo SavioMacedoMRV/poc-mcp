@@ -1,9 +1,10 @@
+import { Botao } from 'components/botao'
 import { BotaoIcone } from 'components/botaoIcone'
 import { Icone } from 'components/icone'
 import { Texto } from 'components/texto'
 import { Hub } from 'services/hubFormasApi/hubFormas.service'
-import iShelves from 'icons/iShelves.svg'
-import iHomeWork from 'icons/iHomeWork.svg'
+import iBloco from 'icons/iBloco.svg'
+import iAlerta from 'icons/iAlerta.svg'
 import iEdicao from 'icons/iEdicao.svg'
 import * as S from './hub.styles'
 
@@ -14,35 +15,28 @@ interface HubProps {
 }
 
 export const HubComponent = ({ hub, onEdit, onView }: HubProps) => {
-  const ocupacaoPercentual = Math.round((hub.ocupacaoAtual / hub.capacidadeTotal) * 100)
-  
   return (
-    <S.Container status={hub.status}>
+    <S.Container>
       <S.HubInfo>
         <S.TituloContainer>
-          <Icone icone={iShelves} altura={24} largura={24} />
+          <Icone icone={iBloco} altura={24} largura={24} />
           <Texto estilo="semibold" tamanho={14}>
             {hub.nome}
           </Texto>
-          <S.StatusBadge status={hub.status}>
-            <Texto tamanho={12} estilo="semibold">
-              {hub.status === 'ativo' ? 'Ativo' : 'Inativo'}
-            </Texto>
-          </S.StatusBadge>
         </S.TituloContainer>
 
         <S.DadosContainer>
           <S.DadoItem>
-            <Icone icone={iHomeWork} altura={20} largura={20} />
+            <Icone icone={iAlerta} altura={24} largura={24} />
             <Texto estilo="semibold" tamanho={14}>
-              {hub.area.toLocaleString()}m²
+              {hub.area}m²
             </Texto>
           </S.DadoItem>
 
           <S.Separador />
 
           <S.DadoItem>
-            <Icone icone={iShelves} altura={20} largura={20} />
+            <Icone icone={iBloco} altura={24} largura={24} />
             <Texto estilo="semibold" tamanho={14}>
               {hub.ocupacaoAtual} | {hub.capacidadeTotal}
             </Texto>
@@ -53,19 +47,18 @@ export const HubComponent = ({ hub, onEdit, onView }: HubProps) => {
       <S.Actions>
         {onView && (
           <BotaoIcone
-            icone={iShelves}
-            altura={24}
-            largura={24}
+            icone={iBloco}
+            altura={40}
+            largura={40}
             aoClicar={() => onView(hub)}
             cor="primaria"
-            disabled={hub.status === 'inativo'}
           />
         )}
         {onEdit && (
           <BotaoIcone
             icone={iEdicao}
-            altura={24}
-            largura={24}
+            altura={40}
+            largura={40}
             aoClicar={() => onEdit(hub)}
             cor="primaria"
           />

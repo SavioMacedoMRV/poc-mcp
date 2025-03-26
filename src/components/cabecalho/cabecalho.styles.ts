@@ -4,7 +4,7 @@ import {media} from 'resources/media'
 import {margens} from 'resources/margens'
 import {Texto} from 'components/texto'
 import {BotaoIcone} from 'components/botaoIcone'
-import {BotaoNavegacao} from 'components/botaoNavegacao'
+import {BotaoMenu} from 'components/botaoMenu'
 import {Input} from 'components/input'
 import {Botao} from 'components/botao'
 import ChevronSVG from 'icons/iChevron.svg'
@@ -30,16 +30,12 @@ export const BotaoSair = styled(Botao).attrs(props => ({
 `
 
 export const BotaoVoltar = styled(BotaoIcone).attrs({
-  cor: cores.neutralXDark,
-  altura: 28,
-  largura: 28,
+  cor: '#434645',
+  altura: 24,
+  largura: 24,
   inclinacao: 90,
 })`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin-right: -4px;
+  margin-right: 8px;
 `
 
 export const Container = styled.header`
@@ -50,7 +46,7 @@ export const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 56px;
-  background: ${cores.neutralXXLight};
+  background: #FFFFFF;
   padding: 8px 64px;
   gap: 237px;
 
@@ -87,25 +83,25 @@ export const HeaderRight = styled.div`
 
 export const IconeFiltro = styled(FiltroSVG)`
   path {
-    fill: ${cores.neutralXDark};
+    fill: #434645;
   }
 `
 
 export const IconeLocal = styled(BlocoSVG)`
   path {
-    fill: ${cores.neutralXDark};
+    fill: #434645;
   }
 `
 
 export const IconePesquisa = styled(LupaSVG)`
   path {
-    fill: ${cores.neutralXDark};
+    fill: #434645;
   }
 `
 
 export const IconeVoltar = styled(ChevronSVG)`
   path {
-    fill: ${cores.neutralXDark};
+    fill: #434645;
   }
 `
 
@@ -114,7 +110,7 @@ export const InputPesquisar = styled(Input).attrs({
   placeholder: 'Pesquisar',
   textoProps: {
     tamanho: 12,
-    cor: cores.neutralXDark,
+    cor: '#434645',
     estilo: 'regular'
   },
   icone: {
@@ -123,35 +119,14 @@ export const InputPesquisar = styled(Input).attrs({
     icone: IconePesquisa
   },
   altura: 32,
-  corBorda: cores.background01,
-  corBordaFocada: cores.background01,
+  corBorda: '#EDF2F0',
+  corBordaFocada: '#EDF2F0',
   iconeEsquerda: true,
 })`
   width: 480px;
+  padding: 4px 8px;
   border-width: 2px;
   border-radius: 8px;
-  background: ${cores.neutralXXLight};
-  height: 32px;
-  padding: 0;
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-  
-  div {
-    align-items: center;
-    gap: 8px;
-    height: 100%;
-    padding: 4px 8px;
-    flex: 1;
-  }
-
-  input {
-    font-family: 'AvertaStd-Regular';
-    font-size: 12px;
-    line-height: 1.235em;
-    height: 100%;
-    padding: 0;
-  }
 
   @media ${media.tablet} {
     width: 100%;
@@ -162,52 +137,34 @@ export const TextoVoltar = styled(Texto).attrs({
   tamanho: 12,
   alturalinha: 20,
   estilo: 'semibold',
-  cor: cores.neutralXDark,
+  cor: '#434645',
 })`
   white-space: nowrap;
-  line-height: 1.667em;
-  font-family: 'AvertaStd-Semibold';
 `
 
 export const TextoObra = styled(TextoVoltar)``
+
 export const TextoProjeto = styled(TextoVoltar)``
 
 export const BotaoFiltro = styled(BotaoIcone).attrs({
-  altura: 24,
-  largura: 24,
-  cor: cores.neutralXXLight,
+  altura: 32,
+  largura: 32,
+  cor: '#FFFFFF',
 })`
+  border: 2px solid #EDF2F0;
+  border-radius: 8px;
   padding: 4px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  border: none;
-  background: transparent;
-  svg {
-    path {
-      fill: ${cores.neutralXDark};
-    }
-  }
 `
 
-export const BotaoHubs = styled(BotaoNavegacao)`
+export const BotaoHubs = styled(BotaoMenu).attrs({
+  titulo: 'Hubs',
+})`
   && {
     width: 160px;
     height: 32px;
     padding: 4px 8px;
     border-radius: 8px;
-    border: 2px solid ${cores.background01};
-    background: ${cores.neutralXXLight};
-    gap: 8px;
-
-    span {
-      font-family: 'AvertaStd-Regular';
-      font-size: 12px;
-      line-height: 1.235em;
-      color: ${cores.neutralXDark};
-    }
+    border: 2px solid #EDF2F0;
+    background: #FFFFFF;
   }
 `

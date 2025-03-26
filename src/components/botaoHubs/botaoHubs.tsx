@@ -8,8 +8,8 @@ import {
   OptionContainer,
   Divider,
   IconWrapper,
-  BotaoNavegacaoProps
-} from './botaoNavegacao.styles'
+  BotaoHubsProps
+} from './botaoHubs.styles'
 
 interface Option {
   id: string
@@ -31,16 +31,16 @@ const options: Option[] = [
   {
     id: 'fornecedores',
     label: 'Fornecedores',
-    icon: require('../../assets/icons/iBloco.svg').default
+    icon: require('../../assets/icons/iBloco.svg').default // Replace with correct icon
   },
   {
     id: 'pecas',
     label: 'Peças',
-    icon: require('../../assets/icons/iBloco.svg').default
+    icon: require('../../assets/icons/iBloco.svg').default // Replace with correct icon
   }
 ]
 
-export const BotaoNavegacao: React.FC<BotaoNavegacaoProps> = ({ onSelect }) => {
+export const BotaoHubs: React.FC<BotaoHubsProps> = ({ onSelect }) => {
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 

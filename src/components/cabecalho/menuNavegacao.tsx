@@ -6,39 +6,35 @@ import styled from 'styled-components'
 import BlocoSVG from 'icons/iBloco.svg'
 import iSeta from 'icons/iSeta.svg'
 import { Icone } from 'components/icone'
-import { cores } from 'resources/cores'
 
 const MenuItem = styled.button`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 8px;
   width: 100%;
   text-align: left;
   transition: background-color 0.2s;
   border-radius: 8px;
-  min-height: 40px;
 
   &:hover {
-    background-color: ${cores.background01};
+    background-color: #EDF2F0;
   }
 `
 
 const Divider = styled.div`
-  height: 1px;
-  background: ${cores.background01};
+  height: 2px;
+  background: #EDF2F0;
   width: 100%;
-  margin: 4px 0;
 `
 
 const StyledIcone = styled(Icone)`
   path {
-    fill: ${cores.neutralXDark};
+    fill: #434645;
   }
-  flex-shrink: 0;
 `
 
 export const MenuNavegacao = () => {
@@ -56,11 +52,11 @@ export const MenuNavegacao = () => {
       {menuItems.map((item, index) => (
         <React.Fragment key={item.label}>
           <MenuItem onClick={() => navigate(item.route)}>
-            <StyledIcone icone={item.icon} altura={20} largura={20} />
+            <StyledIcone icone={item.icon} altura={24} largura={24} />
             <Texto 
               tamanho={12} 
               estilo="semibold" 
-              cor={cores.neutralXDark}
+              cor="#434645"
               alturalinha={20}
             >
               {item.label}

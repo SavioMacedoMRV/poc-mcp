@@ -5,7 +5,7 @@ import {BotaoScrollTop} from 'components/botaoScrollTop'
 
 interface Props {
   children: ReactNode
-  $corFundo?: string
+  corFundo?: string
   semCabecalho?: boolean
   comBotaoScrollTop?: boolean
   cabecalhoProps?: CabecalhoProps
@@ -14,12 +14,12 @@ interface Props {
 export const ContainerPage = ({
   comBotaoScrollTop,
   semCabecalho,
-  $corFundo,
+  corFundo,
   children,
   cabecalhoProps,
 }: Readonly<Props>) => {
   return (
-    <S.Container data-testid={'container-page-ordens'} $corFundo={$corFundo}>
+    <S.Container data-testid={'container-page-ordens'} $corFundo={corFundo}>
       {!semCabecalho && <Cabecalho {...cabecalhoProps} />}
       <S.Content
         data-testid={'content-page-ordens'}

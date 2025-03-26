@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {cores} from '../../resources/cores'
 import {margens} from '../../resources/margens'
 
-export interface BotaoNavegacaoProps {
+export interface BotaoHubsProps {
   isOpen?: boolean
   onSelect?: (option: string) => void
 }
