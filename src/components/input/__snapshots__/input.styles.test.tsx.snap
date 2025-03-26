@@ -1,0 +1,355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #5D615F;
+}
+
+.c0:focus-within {
+  border: 2px solid #5D615F;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot QUANDO $desabilitado for true 1`] = `
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  background: #EDF2F0;
+  border-radius: 8px;
+  border: 2px solid #EDF2F0;
+}
+
+.c0:focus-within {
+  border: 2px solid #5D615F;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot QUANDO $semBorda for true 1`] = `
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: none;
+}
+
+.c0:focus-within {
+  border: none;
+  box-shadow: none;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot QUANDO $tipoTextArea for true 1`] = `
+.c0 {
+  display: flex;
+  padding: 4px 0;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #5D615F;
+}
+
+.c0:focus-within {
+  border: 2px solid #5D615F;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot QUANDO altura for 16 1`] = `
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 16px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #5D615F;
+}
+
+.c0:focus-within {
+  border: 2px solid #5D615F;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+<div>
+  <div
+    altura="16"
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputContainer DEVE ser igual ao snapshot QUANDO for passado uma cor na $corBordaFocada 1`] = `
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #5D615F;
+}
+
+.c0:focus-within {
+  border: 2px solid #00ff00;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles InputIconePesquisa DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c1 {
+  align-items: baseline;
+}
+
+<div>
+  <button
+    class="c0 c1"
+    cor="#434645"
+  >
+    <svg />
+  </button>
+</div>
+`;
+
+exports[`Input.styles InputStyled DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  line-height: normal;
+  font-family: AvertaStd-Semibold;
+  color: #242625;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+}
+
+.c0:focus::placeholder {
+  color: transparent;
+}
+
+.c0:disabled {
+  color: #999E9C;
+  cursor: default;
+}
+
+.c0::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background: #999E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.c0::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.c0::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+<div>
+  <input
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles TextAreaStyled DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  line-height: normal;
+  font-family: AvertaStd-Semibold;
+  color: #242625;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+  resize: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
+.c0:focus::placeholder {
+  color: transparent;
+}
+
+.c0:disabled {
+  color: #999E9C;
+  cursor: default;
+}
+
+.c0::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background: #999E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.c0::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.c0::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+<div>
+  <textarea
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Input.styles TextAreaStyled DEVE ser igual ao snapshot QUANDO passar o estilo, alinhamento, cursor, transformar, $numeroMaxLinhas e $corTextoDesativado 1`] = `
+.c0 {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  line-height: normal;
+  font-family: AvertaStd-Black;
+  color: #242625;
+  text-align: justify;
+  cursor: default;
+  text-transform: capitalize;
+  resize: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
+.c0:focus::placeholder {
+  color: transparent;
+}
+
+.c0:disabled {
+  color: #ff0000;
+  cursor: default;
+}
+
+.c0::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background: #999E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.c0::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.c0::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+<div>
+  <textarea
+    alinhamento="justify"
+    class="c0"
+    cursor="default"
+    estilo="bold"
+    transformar="capitalize"
+  />
+</div>
+`;

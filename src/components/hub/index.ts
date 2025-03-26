@@ -1,0 +1,1 @@
+export { HubComponent } from './hub'

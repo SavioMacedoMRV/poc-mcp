@@ -1,0 +1,260 @@
+name: $(version_app)$(rev:.r)
+
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - name: buildConfiguration
+    value: Release
+
+stages:
+  - stage: 'CI'
+    jobs:
+      - job: 'JavaScript'
+        steps:
+          - task: NodeTool@0
+            displayName: 'Usa Node 20'
+            inputs:
+              versionSpec: '20.x'
+
+          - task: SonarCloudPrepare@2
+            displayName: 'Configura SonarCloud'
+            inputs:
+              SonarCloud: 'SonarCloud'
+              organization: 'mrvengenharia'
+              scannerMode: 'CLI'
+              configMode: 'manual'
+              cliProjectKey: 'mrvengenharia_Portal360Web-Template'
+              cliProjectName: 'Portal360Web-Template'
+              cliSources: 'src'
+              extraProperties: |
+                sonar.sources=src
+                sonar.tests=src
+                sonar.coverage.exclusions=**/*.test.*,**/index.ts,**/bootstrap.tsx,**/resources/**,**/types/**
+                sonar.cpd.exclusions=**/*.test.*
+                sonar.typescript.exclusions=**/node_modules/**,**/server.dev.ts
+                sonar.typescript.file.suffixes=.ts,.tsx
+                sonar.test.inclusions=**/*.test.*
+                sonar.javascript.lcov.reportPaths=coverage/lcov.info
+                sonar.testExecutionReportPaths=coverage/test-reporter.xml
+
+          - script: |
+              npm install -g webpack webpack-cli --save-dev
+              npm install
+            displayName: 'Instala pacotes npm'
+
+          - script: |
+              npm run lint
+            displayName: 'Executa o ESLint'
+
+          - script: |
+              npm run test:ci
+            displayName: 'Executa os testes'
+
+          - script: |
+              npm run build:qa
+            displayName: 'Executa o build'
+
+          - task: SonarCloudAnalyze@2
+            displayName: 'Executa analise SonarCloud'
+
+          - task: SonarCloudPublish@2
+            displayName: 'Publica analise SonarCloud'
+            inputs:
+              pollingTimeoutSec: '300'
+
+          - task: PublishCodeCoverageResults@2
+            displayName: 'Publica coverage SonarCloud'
+            inputs:
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+              pathToSources: '$(System.DefaultWorkingDirectory)/coverage/'
+            continueOnError: true
+
+      - job: 'GitVersion'
+        dependsOn: 'JavaScript'
+        condition: succeeded('JavaScript')
+        steps:
+          - task: gitversion/setup@1
+            inputs:
+              versionSpec: '5.x'
+              preferLatestVersion: true
+
+          - task: gitversion/execute@1
+            inputs:
+              useConfigFile: true
+              configFilePath: 'GitVersion.yml'
+
+      - job: 'Build_QA'
+        displayName: 'Build QA'
+        dependsOn: 'GitVersion'
+        condition: and(succeeded('GitVersion'), ne(variables['Build.Reason'], 'PullRequest'))
+        variables:
+          - group: 'KVEXECUCAOSERVICOS-QAS'
+        steps:
+          - task: EnvTransform@0
+            displayName: 'Transforma variaveis do .env.qa'
+            inputs:
+              inputType: 'inline'
+              content: |
+                APP_INSIGHTS_CONNECTION=$(APP-INSIGHTS-CONNECTION-TEMPLATE)
+                API_BASE_URL=$(API-BASE-URL)
+                API_PATH=$(API-PATH-TEMPLATE)
+              outputFile: '$(Build.SourcesDirectory)/.env.qa'
+
+          - task: NodeTool@0
+            displayName: 'Usa Node 20'
+            inputs:
+              versionSpec: '20.x'
+
+          - script: |
+              npm install -g webpack webpack-cli --save-dev
+              npm install
+            displayName: 'Instala pacotes npm'
+
+          - script: |
+              npm run build:qa
+            displayName: 'Executa o build'
+
+          - task: ArchiveFiles@2
+            displayName: 'Arquivando arquivos de build'
+            inputs:
+              rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/Portal360Web-Template-QA.zip'
+              replaceExistingArchive: true
+              verbose: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publica os artefatos'
+            inputs:
+              pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              artifactName: $(Build.BuildNumber)
+              publishLocation: 'Container'
+
+      - job: 'Build_PROD'
+        displayName: 'Build PROD'
+        dependsOn: 'GitVersion'
+        condition: and(succeeded('GitVersion'), ne(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+        variables:
+          - group: 'KVEXECUCAOSERVICOS-PRD'
+        steps:
+          - task: EnvTransform@0
+            displayName: 'Transforma variaveis do .env.prod'
+            inputs:
+              inputType: 'inline'
+              content: |
+                APP_INSIGHTS_CONNECTION=$(APP-INSIGHTS-CONNECTION-TEMPLATE)
+                API_BASE_URL=$(API-BASE-URL)
+                API_PATH=$(API-PATH-TEMPLATE)
+              outputFile: '$(Build.SourcesDirectory)/.env.prod'
+
+          - task: NodeTool@0
+            displayName: 'Usa Node 20'
+            inputs:
+              versionSpec: '20.x'
+
+          - script: |
+              npm install -g webpack webpack-cli --save-dev
+              npm install
+            displayName: 'Instala pacotes npm'
+
+          - script: |
+              npm run build
+            displayName: 'Executa o build'
+
+          - task: ArchiveFiles@2
+            displayName: 'Arquiva os arquivos de build'
+            inputs:
+              rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/Portal360Web-Template.zip'
+              replaceExistingArchive: true
+              verbose: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publica os artefatos'
+            inputs:
+              pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              artifactName: $(Build.BuildNumber)
+              publishLocation: 'Container'
+
+  - stage: 'Deploy_QA'
+    displayName: Publicação em QAS
+    dependsOn: CI
+    condition: and(succeeded('CI'), ne(variables['Build.Reason'], 'PullRequest'))
+    jobs:
+      - deployment: DeployOnAzure
+        displayName: Deploy Azure QA
+        pool:
+          vmImage: ubuntu-latest
+        environment: 'azdev-mrv-execucaoservico-qas'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+# Escolher a task de acordo com o diretório de publicação
+#
+# AzureWebApp@1 - Essa task publica diretamente na raiz do webapp
+#                - task: AzureWebApp@1
+#                  displayName: Deploy Web App
+#                  inputs:
+#                    azureSubscription: 'AzureServiceConnection-EcossistemaProducao'
+#                    appType: 'webApp'
+#                    appName: 'watemplate-portal360qas'
+#                    deploymentMethod: 'zipDeploy'
+#                    package: $(Pipeline.Workspace)/**/Portal360Web-Template-QA.zip
+#
+# AzureRmWebAppDeployment@4 - Essa task publica em um virtual app, o mesmo precisa ser configurado dentro do webapp                
+#                - task: AzureRmWebAppDeployment@4
+#                  displayName: Deploy Web App
+#                  inputs:
+#                    ConnectionType: 'AzureRM'
+#                    azureSubscription: 'AzureServiceConnection-EcossistemaProducao'
+#                    appType: 'webApp'
+#                    WebAppName: 'wasetup-portal360qas'
+#                    package: $(Pipeline.Workspace)/**/Portal360Web-Template-QA.zip
+#                    VirtualApplication: 'template'
+#                    DeploymentType: 'runFromZip'
+
+  - stage: 'Deploy_PRD'
+    displayName: Publicação em PRD
+    dependsOn: Deploy_QA
+    condition: and(succeeded('Deploy_QA'), ne(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployOnAzure
+        displayName: Deploy Azure PRD
+        pool:
+          vmImage: ubuntu-latest
+        environment: 'azdev-mrv-execucaoservico-prd'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+# Escolher a task de acordo com o diretório de publicação
+# AzureWebApp@1 - Essa task publica diretamente na raiz do webapp
+#
+#                - task: AzureWebApp@1
+#                  displayName: Deploy Web App
+#                  inputs:
+#                    azureSubscription: 'AzureServiceConnection-EcossistemaProducao'
+#                    appType: 'webApp'
+#                    appName: 'watemplate-portal360'
+#                    deploymentMethod: 'zipDeploy'
+#                    package: $(Pipeline.Workspace)/**/Portal360Web-Template.zip
+#
+# AzureRmWebAppDeployment@4 - Essa task publica em um virtual app, o mesmo precisa ser configurado dentro do webapp                
+#                - task: AzureRmWebAppDeployment@4
+#                  displayName: Deploy Web App
+#                  inputs:
+#                    ConnectionType: 'AzureRM'
+#                    azureSubscription: 'AzureServiceConnection-EcossistemaProducao'
+#                    appType: 'webApp'
+#                    WebAppName: 'waportal360web-setupprd'
+#                    package: $(Pipeline.Workspace)/**/Portal360Web-Template.zip
+#                    VirtualApplication: 'template'
+#                    DeploymentType: 'runFromZip'

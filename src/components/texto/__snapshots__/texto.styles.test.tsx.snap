@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Texto.styles TextoStyled DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: normal;
+  font-family: AvertaStd-Regular;
+  color: #242625;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+}
+
+<div>
+  <span
+    class="c0"
+  />
+</div>
+`;

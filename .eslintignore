@@ -1,0 +1,8 @@
+.eslintrc.js
+jest.config.ts
+jest.setup.ts
+customTypes.d.ts
+webpack.config.js
+server.dev.ts
+/node_modules/
+/coverage/

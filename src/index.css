@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'AvertaStd-Black';
+  font-style: normal;
+  src:
+    local('AvertaStd-Black'),
+    url(../src/assets/fonts/AvertaStd-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'AvertaStd-Semibold';
+  font-style: normal;
+  src:
+    local('AvertaStd-Semibold'),
+    url(../src/assets/fonts/AvertaStd-Semibold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'AvertaStd-Regular';
+  font-style: normal;
+  src:
+    local('AvertaStd-Regular'),
+    url(../src/assets/fonts/AvertaStd-Regular.ttf) format('truetype');
+}
+
+html {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #999e9c;
+    border-radius: 4px;
+    border: none;
+  }
+}
+
+body {
+  display: block;
+  margin: 0px;
+}

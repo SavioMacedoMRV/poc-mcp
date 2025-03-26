@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalConfirmacao.styles BotaoCancelar DEVE ser igual ao snapshot 1`] = `
+.c2 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #FFFFFF;
+  text-align: start;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: 144px;
+  height: 48px;
+  cursor: pointer;
+  opacity: 1;
+  background: #5D615F;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+.c1 {
+  border-radius: 16px;
+}
+
+<div>
+  <button
+    altura="48"
+    class="c0 c1"
+    cor="#5D615F"
+    largura="144"
+  >
+    <span
+      alturalinha="24"
+      class="c2 "
+      cor="#FFFFFF"
+      cursor="pointer"
+      data-testid="texto-botao"
+      estilo="semibold"
+      tamanho="16"
+    >
+      Cancelar
+    </span>
+  </button>
+</div>
+`;
+
+exports[`ModalConfirmacao.styles BotaoConfirmar DEVE ser igual ao snapshot 1`] = `
+.c2 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #E04C36;
+  text-align: start;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: 144px;
+  height: 48px;
+  cursor: pointer;
+  opacity: 1;
+  background: #F7F5F2;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+.c1 {
+  border-radius: 16px;
+}
+
+<div>
+  <button
+    altura="48"
+    class="c0 c1"
+    cor="#F7F5F2"
+    largura="144"
+  >
+    <span
+      alturalinha="24"
+      class="c2 "
+      cor="#E04C36"
+      cursor="pointer"
+      data-testid="texto-botao"
+      estilo="semibold"
+      tamanho="16"
+    >
+      Confirmar
+    </span>
+  </button>
+</div>
+`;
+
+exports[`ModalConfirmacao.styles ContainerBotoes DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`ModalConfirmacao.styles IconeCancelar DEVE ser igual ao snapshot 1`] = `
+<div>
+  <svg
+    class=""
+    data-file-name="SvgICancelar"
+    fill="#434645"
+    height="48"
+    style="min-width: 48px; min-height: 48px; max-width: 48px; max-height: 48px; transform: rotate(0deg);"
+    width="48"
+  />
+</div>
+`;
+
+exports[`ModalConfirmacao.styles ModalContent DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 32px;
+  width: 350px;
+  border-radius: 32px;
+  background-color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .c0 {
+    width: 300px;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`ModalConfirmacao.styles ModalOverlay DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(93, 97, 95, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`ModalConfirmacao.styles TextoMensagem DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  font-family: AvertaStd-Regular;
+  color: #5D615F;
+  text-align: center;
+  cursor: text;
+  text-transform: none;
+}
+
+<div>
+  <span
+    alinhamento="center"
+    class="c0 "
+    cor="#5D615F"
+    tamanho="14"
+  />
+</div>
+`;
+
+exports[`ModalConfirmacao.styles TextoTitulo DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: normal;
+  font-family: AvertaStd-Semibold;
+  color: #434645;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+}
+
+<div>
+  <span
+    class="c0 "
+    cor="#434645"
+    estilo="semibold"
+    tamanho="18"
+  />
+</div>
+`;

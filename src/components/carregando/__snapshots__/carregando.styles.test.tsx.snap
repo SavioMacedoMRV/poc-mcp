@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carregando.styles Animacao DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  width: 350px;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Carregando.styles Container DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;

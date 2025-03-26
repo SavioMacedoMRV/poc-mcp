@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BotaoIcone.styles BotaoStyled DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 8px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;
+
+exports[`BotaoIcone.styles BotaoStyled DEVE ser igual ao snapshot QUANDO $borda for verdadeiro 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: 2px solid #5D615F;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 8px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;
+
+exports[`BotaoIcone.styles BotaoStyled DEVE ser igual ao snapshot QUANDO $borda for verdadeiro e cor 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: 2px solid red;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 8px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+<div>
+  <button
+    class="c0"
+    cor="red"
+  />
+</div>
+`;
+
+exports[`BotaoIcone.styles BotaoStyled DEVE ser igual ao snapshot QUANDO $semMargem for verdadeiro 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;

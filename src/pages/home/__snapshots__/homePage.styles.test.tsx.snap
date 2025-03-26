@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage.styles BotaoNavegar DEVE ser igual ao snapshot 1`] = `
+.c1 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #FFFFFF;
+  text-align: start;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #54BC82;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0 "
+    cor="#54BC82"
+  >
+    <span
+      alturalinha="24"
+      class="c1 "
+      cor="#FFFFFF"
+      cursor="pointer"
+      data-testid="texto-botao"
+      estilo="semibold"
+    />
+    <svg
+      data-file-name="SvgISeta"
+      fill="#FFFFFF"
+      height="24"
+      style="min-width: 24px; min-height: 24px; max-width: 24px; max-height: 24px; transform: rotate(0deg);"
+      width="24"
+    />
+  </button>
+</div>
+`;
+
+exports[`HomePage.styles Container DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  background: #EDF2F0;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`HomePage.styles Contente DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  gap: 16px;
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`HomePage.styles Logo DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  height: 21px;
+  width: 125px;
+}
+
+<div>
+  <svg
+    class="c0"
+    data-file-name="SvgILogoMRV"
+  />
+</div>
+`;
+
+exports[`HomePage.styles StyledSvgDEVE ser igual ao snapshot 1`] = `
+.c0 {
+  fill: red;
+  width: 32px;
+  height: 32px;
+}
+
+<div>
+  <svg
+    class="c0"
+    data-file-name="SvgIUser"
+  />
+</div>
+`;

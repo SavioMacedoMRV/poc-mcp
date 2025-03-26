@@ -1,0 +1,449 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cabecalho.styles BotaoSair DEVE ser igual ao snapshot 1`] = `
+.c2 {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #F4715D;
+  text-align: start;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #F7F5F2;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+@media (max-width: 768px) {
+  .c1 span {
+    display: none;
+  }
+}
+
+<div>
+  <button
+    class="c0 c1"
+    cor="#F7F5F2"
+  >
+    <span
+      alturalinha="24"
+      class="c2 "
+      cor="#F4715D"
+      cursor="pointer"
+      data-testid="texto-botao"
+      estilo="semibold"
+      tamanho="14"
+    >
+      Sair
+    </span>
+    <svg
+      data-file-name="SvgIFechar"
+      fill="#F4715D"
+      height="24"
+      style="min-width: 24px; min-height: 24px; max-width: 24px; max-height: 24px; transform: rotate(0deg);"
+      width="24"
+    />
+  </button>
+</div>
+`;
+
+exports[`Cabecalho.styles BotaoVoltar DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 8px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c1 {
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .c1 {
+    margin-left: 0px;
+  }
+}
+
+<div>
+  <button
+    class="c0 c1"
+    cor="#5D615F"
+  >
+    <svg
+      class=""
+      data-file-name="SvgIChevron"
+      data-testid="icone"
+      fill="#5D615F"
+      height="40"
+      style="transform: rotate(90deg);"
+      width="40"
+    />
+  </button>
+</div>
+`;
+
+exports[`Cabecalho.styles Container DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  position: sticky;
+  z-index: 1;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  background: #FFFFFF;
+  padding: 0 64px;
+}
+
+@media (max-width: 768px) {
+  .c0 {
+    padding: 0 24px;
+  }
+}
+
+<div>
+  <header
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles HeaderCenter DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex: 3;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-left: 24px;
+}
+
+@media (max-width: 768px) {
+  .c0 {
+    margin-left: 0;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles HeaderLeft DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  margin-left: 24px;
+}
+
+@media (max-width: 768px) {
+  .c0 {
+    margin-left: 0;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles HeaderRight DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 24px;
+}
+
+@media (max-width: 768px) {
+  .c0 {
+    margin-right: 0;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles IconeFiltro DEVE ser igual ao snapshot 1`] = `
+<div>
+  <svg
+    class=""
+    data-file-name="SvgIFiltro"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles IconeLocal DEVE ser igual ao snapshot 1`] = `
+<div>
+  <svg
+    class=""
+    data-file-name="SvgIBloco"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles IconeVoltar DEVE ser igual ao snapshot 1`] = `
+<div>
+  <svg
+    class=""
+    data-file-name="SvgIChevron"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles InputPesquisar DEVE ser igual ao snapshot 1`] = `
+.c3 {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.c3:hover {
+  opacity: 0.7;
+}
+
+.c3:active {
+  opacity: 1;
+}
+
+.c3:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0 {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  height: 24px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #F2F2F2;
+}
+
+.c0:focus-within {
+  border: 2px solid #38C78B;
+  box-shadow: 0px 2px 8px 0px rgba(67, 70, 69, 0.3);
+}
+
+.c2 {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 12px;
+  line-height: normal;
+  font-family: AvertaStd-Semibold;
+  color: #242625;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+}
+
+.c2:focus::placeholder {
+  color: transparent;
+}
+
+.c2:disabled {
+  color: #999E9C;
+  cursor: default;
+}
+
+.c2::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background: #999E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.c2::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.c2::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.c4 {
+  align-items: baseline;
+}
+
+.c1 {
+  flex: 1;
+  padding: 4px 8px;
+  max-width: 720px;
+}
+
+<div>
+  <div
+    altura="24"
+    class="c0 c1"
+    data-testid="input"
+  >
+    <input
+      class="c2"
+      data-testid="input-input"
+      placeholder="Pesquisar"
+      tamanho="12"
+      value=""
+    />
+    <button
+      class="c3 c4"
+      cor="#434645"
+      data-testid="btn-input-pesquisar"
+    >
+      <svg
+        data-file-name="SvgIPesquisar"
+        data-testid="icone"
+        fill="#434645"
+        height="24"
+        style="transform: rotate(0deg);"
+        width="24"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Cabecalho.styles TextoObra DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #793F98;
+  text-align: start;
+  cursor: default;
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .c1 {
+    display: none;
+  }
+}
+
+<div>
+  <span
+    alturalinha="24"
+    class="c0 c1"
+    cor="#793F98"
+    cursor="default"
+    estilo="semibold"
+    tamanho="16"
+  />
+</div>
+`;
+
+exports[`Cabecalho.styles TextoProjeto DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #5D615F;
+  text-align: start;
+  cursor: default;
+  text-transform: none;
+}
+
+.c2 {
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .c1 {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .c2 {
+    display: none;
+  }
+}
+
+<div>
+  <span
+    alturalinha="24"
+    class="c0 c1 c2"
+    cor="#5D615F"
+    cursor="default"
+    estilo="semibold"
+    tamanho="16"
+  />
+</div>
+`;

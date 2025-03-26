@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "paths": {
+      "animations/*": ["src/assets/animations/*"],
+      "components/*": ["src/components/*"],
+      "contexts/*": ["src/contexts/*"],
+      "helpers/*": ["src/helpers/*"],
+      "icons/*": ["src/assets/icons/*"],
+      "infrastructure/*": ["src/infrastructure/*"],
+      "pages/*": ["src/pages/*"],
+      "resources/*": ["src/resources/*"],
+      "services/*": ["src/services/*"],
+      "types/*": ["src/types/*"]
+    }
+  },
+  "include": ["src", "customTypes.d.ts"]
+}

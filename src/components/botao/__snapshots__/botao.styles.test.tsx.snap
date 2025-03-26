@@ -1,0 +1,336 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o altura passado 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: 16px;
+  cursor: pointer;
+  opacity: 1;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    altura="16"
+    class="c0"
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o cor passada 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #ff0000;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0"
+    cor="#ff0000"
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o disabled como true 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: default;
+  opacity: 0.2;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.2;
+}
+
+.c0:active {
+  opacity: 0.2;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0"
+    disabled=""
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o disabled como true e a $corDesabilitado com a cor passada 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: default;
+  opacity: 0.2;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.2;
+}
+
+.c0:active {
+  opacity: 0.2;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #00ff00;
+}
+
+<div>
+  <button
+    class="c0"
+    disabled=""
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o espaco passado 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0"
+    espaco="16"
+  />
+</div>
+`;
+
+exports[`Botao.styles BotaoStyled DEVE ser igual ao snapshot com o largura passado 1`] = `
+.c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 16px;
+  width: 16px;
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  background: #D9DDDB;
+}
+
+.c0:hover {
+  opacity: 0.7;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus-visible {
+  outline: unset;
+  border: 2px solid #999E9C;
+}
+
+.c0:disabled {
+  background: #D9DDDB;
+}
+
+<div>
+  <button
+    class="c0"
+    largura="16"
+  />
+</div>
+`;
+
+exports[`Botao.styles TextoBotao DEVE ser igual ao snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  font-family: AvertaStd-Semibold;
+  color: #242625;
+  text-align: start;
+  cursor: text;
+  text-transform: none;
+}
+
+<div>
+  <span
+    alturalinha="24"
+    class="c0 "
+    estilo="semibold"
+  />
+</div>
+`;
