@@ -1,69 +1,71 @@
-import { Botao } from 'components/botao'
-import { BotaoIcone } from 'components/botaoIcone'
-import { Icone } from 'components/icone'
-import { Texto } from 'components/texto'
-import { Hub } from 'services/hubFormasApi/hubFormas.service'
-import iBloco from 'icons/iBloco.svg'
-import iAlerta from 'icons/iAlerta.svg'
-import iEdicao from 'icons/iEdicao.svg'
+import React from 'react'
 import * as S from './hub.styles'
+import { Texto } from 'components/texto'
+import { Icone } from 'components/icone'
+import { cores } from 'resources/cores'
+import PalletSVG from 'icons/pallet.svg'
+import SquareFootSVG from 'icons/square_foot.svg'
+import EditSVG from 'icons/iEdicao.svg'
+import ShelvesSVG from 'icons/iShelves.svg'
 
 interface HubProps {
-  hub: Hub
-  onEdit?: (hub: Hub) => void
-  onView?: (hub: Hub) => void
+  id: string
+  nome: string
+  status: 'ativo' | 'inativo'
+  area: number
+  ocupacaoAtual: number
+  capacidadeTotal: number
+  aoEditar: () => void
+  aoAbrirDetalhes: () => void
 }
 
-export const HubComponent = ({ hub, onEdit, onView }: HubProps) => {
+export const HubComponent = ({ 
+  id,
+  nome,
+  status,
+  area,
+  ocupacaoAtual,
+  capacidadeTotal,
+  aoEditar,
+  aoAbrirDetalhes
+}: Readonly<HubProps>) => {
   return (
-    <S.Container>
-      <S.HubInfo>
-        <S.TituloContainer>
-          <Icone icone={iBloco} altura={24} largura={24} />
-          <Texto estilo="semibold" tamanho={14}>
-            {hub.nome}
+    <S.Container status={status}>
+      <S.InfoSection>
+        <Icone icone={ShelvesSVG} cor="#434645" altura={24} largura={24} />
+        <S.HubName>{nome}</S.HubName>
+      </S.InfoSection>
+
+      <S.MetricsSection>
+        <S.MetricItem>
+          <Icone icone={SquareFootSVG} cor="#434645" altura={24} largura={24} />
+          <Texto tamanho={14} estilo="semibold" cor="#434645">
+            {area.toLocaleString()}m²
           </Texto>
-        </S.TituloContainer>
+        </S.MetricItem>
 
-        <S.DadosContainer>
-          <S.DadoItem>
-            <Icone icone={iAlerta} altura={24} largura={24} />
-            <Texto estilo="semibold" tamanho={14}>
-              {hub.area}m²
-            </Texto>
-          </S.DadoItem>
+        <S.Divider />
 
-          <S.Separador />
+        <S.MetricItem>
+          <Icone icone={PalletSVG} cor="#434645" altura={24} largura={24} />
+          <Texto tamanho={14} estilo="semibold" cor="#434645">
+            {ocupacaoAtual.toLocaleString()} | {capacidadeTotal.toLocaleString()}
+          </Texto>
+        </S.MetricItem>
 
-          <S.DadoItem>
-            <Icone icone={iBloco} altura={24} largura={24} />
-            <Texto estilo="semibold" tamanho={14}>
-              {hub.ocupacaoAtual} | {hub.capacidadeTotal}
-            </Texto>
-          </S.DadoItem>
-        </S.DadosContainer>
-      </S.HubInfo>
+        <S.Divider />
 
-      <S.Actions>
-        {onView && (
-          <BotaoIcone
-            icone={iBloco}
-            altura={40}
-            largura={40}
-            aoClicar={() => onView(hub)}
-            cor="primaria"
+        <S.ActionButton
+            icone={ShelvesSVG}
+            cor={cores.neutralXDark}
+            aoClicar={aoAbrirDetalhes}
           />
-        )}
-        {onEdit && (
-          <BotaoIcone
-            icone={iEdicao}
-            altura={40}
-            largura={40}
-            aoClicar={() => onEdit(hub)}
-            cor="primaria"
+          <S.ActionButton
+            icone={EditSVG}
+            cor={cores.neutralXDark}
+            aoClicar={aoEditar}
           />
-        )}
-      </S.Actions>
+      </S.MetricsSection>
     </S.Container>
   )
 }

@@ -2,12 +2,19 @@ import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { Texto } from '../texto'
 import { Icone } from '../icone'
 import { cores } from '../../resources/cores'
+import ArrowDownSVG from '../../assets/icons/iChevron.svg'
+import ShelvesIcon from '../../assets/icons/iShelves.svg'
+import HomeWorkIcon from '../../assets/icons/iHomeWork.svg'
+import FoundationIcon from '../../assets/icons/iFoundation.svg'
+import CogIcon from '../../assets/icons/iCog.svg'
 import {
   Container,
   DropdownContainer,
   OptionContainer,
-  Divider,
+  ButtonContent,
   IconWrapper,
+  Divider,
+  OptionGroup,
   BotaoNavegacaoProps
 } from './botaoNavegacao.styles'
 
@@ -21,22 +28,22 @@ const options: Option[] = [
   {
     id: 'hubs',
     label: 'Hubs',
-    icon: require('../../assets/icons/iBloco.svg').default
+    icon: ShelvesIcon
   },
   {
     id: 'obras',
     label: 'Obras',
-    icon: require('../../assets/icons/iBloco.svg').default // Replace with correct icon
+    icon: HomeWorkIcon
   },
   {
     id: 'fornecedores',
     label: 'Fornecedores',
-    icon: require('../../assets/icons/iBloco.svg').default
+    icon: FoundationIcon
   },
   {
     id: 'pecas',
     label: 'Peças',
-    icon: require('../../assets/icons/iBloco.svg').default
+    icon: CogIcon
   }
 ]
 
@@ -65,46 +72,51 @@ export const BotaoNavegacao: React.FC<BotaoNavegacaoProps> = ({ onSelect }) => {
   return (
     <Container ref={containerRef}>
       <OptionContainer onClick={() => setIsOpen(!isOpen)}>
-        <IconWrapper>
+        <ButtonContent>
           <Icone
-            icone={options[0].icon}
+            icone={ArrowDownSVG}
             cor={cores.neutralXDark}
-            altura={24}
-            largura={24}
+            altura={20}
+            largura={20}
+            inclinacao={isOpen ? 180 : 0}
           />
-        </IconWrapper>
-        <Texto
-          cor={cores.neutralXDark}
-          estilo="semibold"
-          tamanho={12}
-        >
-          {options[0].label}
-        </Texto>
+          <Texto
+            cor={cores.neutralXDark}
+            estilo="regular"
+            tamanho={12}
+            alturalinha={16}
+          >
+            Hubs
+          </Texto>
+        </ButtonContent>
       </OptionContainer>
 
       <DropdownContainer $isOpen={isOpen}>
-        {options.map((option, index) => (
-          <React.Fragment key={option.id}>
-            <OptionContainer onClick={() => handleOptionClick(option.id)}>
-              <IconWrapper>
-                <Icone
-                  icone={option.icon}
+        <OptionGroup>
+          {options.map((option, index) => (
+            <React.Fragment key={option.id}>
+              <OptionContainer onClick={() => handleOptionClick(option.id)}>
+                <IconWrapper>
+                  <Icone
+                    icone={option.icon}
+                    cor={cores.neutralXDark}
+                    altura={24}
+                    largura={24}
+                  />
+                </IconWrapper>
+                <Texto
                   cor={cores.neutralXDark}
-                  altura={24}
-                  largura={24}
-                />
-              </IconWrapper>
-              <Texto
-                cor={cores.neutralXDark}
-                estilo="semibold"
-                tamanho={12}
-              >
-                {option.label}
-              </Texto>
-            </OptionContainer>
-            {index < options.length - 1 && <Divider />}
-          </React.Fragment>
-        ))}
+                  estilo="regular"
+                  tamanho={12}
+                  alturalinha={16}
+                >
+                  {option.label}
+                </Texto>
+              </OptionContainer>
+              {index < options.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+        </OptionGroup>
       </DropdownContainer>
     </Container>
   )

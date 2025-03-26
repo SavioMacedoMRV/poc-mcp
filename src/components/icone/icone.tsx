@@ -11,7 +11,7 @@ export interface IconeProps extends React.FC<React.SVGProps<SVGSVGElement>> {
 
 export const Icone = ({
   icone: Icone,
-  altura = 32,
+  altura = 24,
   largura = altura,
   inclinacao = 0,
   cor = cores.neutralDark,

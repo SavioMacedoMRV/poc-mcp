@@ -19,7 +19,7 @@ export const cores = {
   complementary06: '#AC41D8',
   complementary07: '#F7287C',
   complementary08: '#FF5AAD',
-  complementary09: '#F4715D',
+  complementary09: '#F4715D',  // Cor do botão cancelar
 
   neutralXXDark: '#242625',
   neutralXDark: '#434645',

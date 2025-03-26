@@ -2,14 +2,17 @@ import React, {ReactElement, useCallback, useState} from 'react'
 import * as S from './cabecalho.styles'
 import {Evento} from 'types/enums'
 import {Empreendimento} from 'types/interfaces'
-import {BotaoMenu} from 'components/botaoMenu'
 import {BotaoIcone} from 'components/botaoIcone'
 import {RegistrarEvento} from 'infrastructure/logs'
 import {useNavigate} from 'react-router-dom'
 import {rotas} from 'resources/rotas'
+import {cores} from 'resources/cores'
 import {BotaoProps} from 'components/botao/botao.styles'
 import {ModalConfirmacao} from 'components/modalConfirmacao'
 import {MenuNavegacao} from './menuNavegacao'
+import {Texto} from 'components/texto'
+import ArrowBackIosSVG from '../../assets/icons/iArrowBackIos.svg'
+import FecharSmallSVG from '../../assets/icons/iFecharSmall.svg'
 
 export interface CabecalhoProps {
   obra?: Empreendimento | null
@@ -25,6 +28,7 @@ export interface CabecalhoProps {
   botaoSair?:
     | (BotaoProps & {confirmacao?: {titulo: string; mensagem: string}})
     | boolean
+  modoCadastro?: boolean
 }
 
 export const Cabecalho = ({
@@ -36,6 +40,7 @@ export const Cabecalho = ({
   filtroLocal,
   aoClicarVoltar,
   botaoSair,
+  modoCadastro,
 }: Readonly<CabecalhoProps>) => {
   const navigate = useNavigate()
   const projetoSelecionado = obterProjetoSelecionado(obra)
@@ -71,6 +76,41 @@ export const Cabecalho = ({
     aoConfirmarSair()
   }, [aoConfirmarSair, botaoSair])
 
+  if (modoCadastro) {
+    return (
+      <S.Container data-testid="cabecalho" $modoCadastro>
+        <S.HeaderLeft>
+          <S.BotaoVoltar
+            data-testid="btn-cabecalho-voltar"
+            icone={S.IconeVoltar}
+            aoClicar={aoClicarVoltarHandler}
+          />
+          <S.TextoVoltar>Voltar</S.TextoVoltar>
+        </S.HeaderLeft>
+        <S.HeaderRight>
+          <S.BotaoSair
+            data-testid="btn-cabecalho-sair"
+            texto="Cancelar"
+            icone={FecharSmallSVG}
+            aoClicar={aoClicarVoltarHandler}
+            cor={cores.complementary09}
+            corTexto={cores.neutralXXLight}
+            textoProps={{
+              tamanho: 12,
+              estilo: 'semibold',
+              alturalinha: 20
+            }}
+            iconeProps={{
+              altura: 24,
+              largura: 24,
+              cor: cores.neutralXXLight
+            }}
+          />
+        </S.HeaderRight>
+      </S.Container>
+    )
+  }
+
   return (
     <S.Container data-testid="cabecalho">
       <S.HeaderLeft>
@@ -86,7 +126,6 @@ export const Cabecalho = ({
           <S.TextoVoltar>{projetoSelecionado.obra}</S.TextoVoltar>
         )}
       </S.HeaderLeft>
-
       <S.HeaderCenter>
         {pesquisa && (
           <S.InputPesquisar
@@ -96,17 +135,8 @@ export const Cabecalho = ({
           />
         )}
         <S.BotaoHubs
-          data-testid={'filtro-pep-superior-cabecalho'}
-          botao={{
-            texto: 'Hubs',
-            textoProps: {
-              tamanho: 12,
-              cor: '#434645',
-              estilo: 'regular'
-            }
-          }}
-          titulo={'Navegação'}
-          componenteOpcoes={<MenuNavegacao />}
+          data-testid={'navegacao-hubs-cabecalho'}
+          onSelect={() => {}}
         />
         {filtroAtividade && (
           <S.BotaoFiltro
@@ -123,9 +153,8 @@ export const Cabecalho = ({
           />
         )}
       </S.HeaderCenter>
-
       <S.HeaderRight>
-        {cabecalhoDireita ??
+        {cabecalhoDireita ?? 
           (botaoSair && (
             <S.BotaoSair
               data-testid="btn-cabecalho-sair"

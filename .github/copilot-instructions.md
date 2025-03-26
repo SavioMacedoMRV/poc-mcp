@@ -133,6 +133,7 @@ import { createContext, useContext, useReducer } from 'react'
 - Use existing Portal360 components whenever possible
 - Create new components only for business-specific needs
 - Follow the established component structure
+- Allways follow the resources classes existed in the resources folder, if the color doesnt exists, create him
 
 2. State Management
 - Use existing authentication and navigation contexts

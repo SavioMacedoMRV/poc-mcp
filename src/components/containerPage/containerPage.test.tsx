@@ -45,7 +45,7 @@ describe('ContainerPage', () => {
 
     test('DEVE renderizar o container principal com a cor de fundo passada pelas props', () => {
       component.rerender(
-        <ContainerPage corFundo={cores.background02}>teste</ContainerPage>,
+        <ContainerPage $corFundo={cores.background02}>teste</ContainerPage>,
       )
       const container = component.getByTestId('container-page-ordens')
 

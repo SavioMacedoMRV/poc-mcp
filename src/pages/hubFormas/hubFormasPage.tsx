@@ -1,17 +1,21 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Texto } from 'components/texto'
+import React, { useState, useEffect } from 'react'
 import { ContainerPage } from 'components/containerPage'
-import { Botao } from 'components/botao'
+import { useRouteLoaderData, useNavigate } from 'react-router-dom'
+import { Empreendimento } from 'types/interfaces'
+import { Texto } from 'components/texto'
 import { HubComponent } from 'components/hub'
 import { Hub, hubFormasService } from 'services/hubFormasApi/hubFormas.service'
-import iAdicionar from 'icons/iAdicionar.svg'
+import { Icone } from 'components/icone'
+import IAdicionarSVG from 'icons/iAdicionar.svg'
+import IShelvesSVG from 'icons/iShelves.svg'
 import * as S from './hubFormasPage.styles'
 
 export const HubFormasPage = () => {
   const navigate = useNavigate()
+  const { obra } = useRouteLoaderData('root-template') as { obra: Empreendimento }
   const [hubs, setHubs] = useState<Hub[]>([])
   const [filteredHubs, setFilteredHubs] = useState<Hub[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     hubFormasService.listarHubs().then(data => {
@@ -20,31 +24,36 @@ export const HubFormasPage = () => {
     })
   }, [])
 
+  useEffect(() => {
+    let filtered = [...hubs]
+    
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase()
+      filtered = filtered.filter(hub => 
+        hub.nome.toLowerCase().includes(term) ||
+        hub.cidade.toLowerCase().includes(term) ||
+        hub.estado.toLowerCase().includes(term) ||
+        hub.endereco.toLowerCase().includes(term)
+      )
+    }
+    
+    setFilteredHubs(filtered)
+  }, [hubs, searchTerm])
+
   const handleView = (hub: Hub) => {
-    // TODO: Implement view action
-    console.log('View hub:', hub)
+    navigate(`/hub-formas/${hub.id}`)
   }
 
   const handleEdit = (hub: Hub) => {
-    // TODO: Implement edit action
-    console.log('Edit hub:', hub)
+    navigate(`/hub-formas/${hub.id}/editar`)
   }
 
   const handleNewHub = () => {
-    // TODO: Implement new hub action
-    console.log('New hub')
+    navigate('/hubformas/cadastro')
   }
 
   const aoPesquisar = (texto?: string | number) => {
-    if (!texto) {
-      setFilteredHubs(hubs)
-      return
-    }
-    const searchTerm = texto.toString().toLowerCase()
-    const filtered = hubs.filter(hub => 
-      hub.nome.toLowerCase().includes(searchTerm)
-    )
-    setFilteredHubs(filtered)
+    setSearchTerm(texto?.toString() ?? '')
   }
 
   return (
@@ -54,35 +63,42 @@ export const HubFormasPage = () => {
           aoPesquisar,
           autoPesquisar: true
         },
-        filtroPepSuperior: <div>Lista de Hubs</div>,
-        filtroAtividade: <div>Filtros</div>,
-        aoClicarVoltar: () => navigate(-1)
       }}
     >
       <S.Content>
         <S.HeaderContainer>
           <S.TitleSection>
-            <Texto tamanho={24} estilo="semibold">
-              Lista de Hubs
-            </Texto>
-            <Botao
-              texto="Novo cadastro"
-              icone={iAdicionar}
-              aoClicar={handleNewHub}
-              cor="primaria"
-            />
+            <Icone icone={IShelvesSVG} altura={24} largura={24} />
+            <Texto tamanho={24} estilo="bold">Lista de Hubs</Texto>
           </S.TitleSection>
+          
+          <S.NovoCadastroButton 
+            texto="Novo cadastro"
+            icone={IAdicionarSVG}
+            aoClicar={handleNewHub}
+          />
         </S.HeaderContainer>
 
         <S.HubsList>
-          {filteredHubs.map(hub => (
-            <HubComponent
-              key={hub.id}
-              hub={hub}
-              onView={() => handleView(hub)}
-              onEdit={() => handleEdit(hub)}
-            />
-          ))}
+          {filteredHubs.length > 0 ? (
+            filteredHubs.map(hub => (
+              <HubComponent
+                key={hub.id}
+                {...hub}
+                aoEditar={() => handleEdit(hub)}
+                aoAbrirDetalhes={() => handleView(hub)}
+              />
+            ))
+          ) : (
+            <S.EmptyState>
+              <Texto tamanho={16} estilo="semibold" cor="#434645">
+                Nenhum hub encontrado
+              </Texto>
+              <Texto tamanho={14} cor="#434645">
+                Utilize o botão "Novo cadastro" para adicionar um hub
+              </Texto>
+            </S.EmptyState>
+          )}
         </S.HubsList>
       </S.Content>
     </ContainerPage>

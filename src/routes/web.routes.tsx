@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   createMemoryRouter,
   defer,
+  Navigate,
 } from 'react-router-dom'
 import {HomePage} from 'pages/home'
 import {rotas} from 'resources/rotas'
@@ -16,7 +17,8 @@ import {NavigationManager} from 'contexts/navigation'
 import {GerenciadorStorage} from 'infrastructure/storage'
 import {OutraPaginaPage} from 'pages/outraPagina'
 import {obterDadoApi} from 'services/dadoApi'
-import {HubFormasPage, HubFormasDetalhePage} from 'pages/hubFormas'
+import {HubFormasPage} from 'pages/hubFormas'
+import {HubCadastroPage} from 'pages/hubCadastro'
 import {hubFormasApi} from 'services/hubFormasApi'
 
 interface WebRoutesProps {
@@ -54,6 +56,10 @@ export const WebRoutes = ({
       children: [
         {
           index: true,
+          element: <Navigate to={rotas.HubFormas} replace />,
+        },
+        {
+          path: 'home',
           Component: HomePage,
           loader: homePageLoader,
         },
@@ -68,9 +74,8 @@ export const WebRoutes = ({
           loader: hubFormasPageLoader,
         },
         {
-          path: `${rotas.HubFormasDetalhe}/:id`,
-          Component: HubFormasDetalhePage,
-          loader: hubFormasDetalhePageLoader,
+          path: rotas.HubFormasCadastro,
+          Component: HubCadastroPage,
         }
       ],
     },
